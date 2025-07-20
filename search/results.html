@@ -142,6 +142,10 @@
         .search-again-button:hover {
             background-color: #895d30;
         }
+        .persistent-search-container {
+            text-align: center;
+            padding: 3rem 1rem 1rem 1rem; /* Add space above and below the button */
+        }
     </style>
 </head>
 <body>
@@ -164,7 +168,12 @@
             <button id="searchAgainBtn" class="search-again-button">
                 🔎 Search Again
             </button>
-        </div>    
+        </div>
+        <div id="persistentSearchContainer" class="persistent-search-container">
+            <button id="persistentSearchBtn" class="search-again-button">
+                🔎 Search Another Location
+            </button>
+        </div>
     </main>
 
     <footer>
@@ -228,8 +237,9 @@
             }
 
             if (cafesToDisplay.length === 0) {
-                noResultsMessage.style.display = 'block';
-                return;
+                noResultsMessage.style.display = 'block'; // Show "No Results" message
+            } else {
+                persistentSearchContainer.style.display = 'block'; // Show persistent button if there ARE results
             }
 
             cafesToDisplay.forEach(cafe => {
@@ -291,10 +301,14 @@
             }
 
             displayCafes(filteredCafes, searchedLocation);
-            const searchAgainBtn = document.getElementById('searchAgainBtn');
-            searchAgainBtn.addEventListener('click', () => {
-                // This sends the user back to the main search page
+            const noResultsSearchBtn = document.getElementById('noResultsSearchBtn');
+            noResultsSearchBtn.addEventListener('click', () => {
                 window.location.href = './index.html'; 
+            });
+            
+            const persistentSearchBtn = document.getElementById('persistentSearchBtn');
+            persistentSearchBtn.addEventListener('click', () => {
+                window.location.href = './index.html';
             });
         });
     </script>
