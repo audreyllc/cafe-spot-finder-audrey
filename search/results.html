@@ -126,6 +126,22 @@
             padding: 3rem 1rem;
             display: none; /* Hidden by default */
         }
+        .search-again-button {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 500;
+            background-color: #a87544; /* Same style as other buttons */
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 1.5rem; /* Adds space above the button */
+        }
+        .search-again-button:hover {
+            background-color: #895d30;
+        }
     </style>
 </head>
 <body>
@@ -143,7 +159,12 @@
         <h2 id="resultsHeading" class="results-heading"></h2>
         <div id="cafeList" class="results-grid">
             </div>
-        <p id="noResultsMessage" class="no-results">No cafés found for this location. Please try another search.</p>
+        <div id="noResultsMessage" class="no-results">
+            <p>No cafés found for this location. Please try another search.</p>
+            <button id="searchAgainBtn" class="search-again-button">
+                🔎 Search Again
+            </button>
+        </div>    
     </main>
 
     <footer>
@@ -270,6 +291,11 @@
             }
 
             displayCafes(filteredCafes, searchedLocation);
+            const searchAgainBtn = document.getElementById('searchAgainBtn');
+            searchAgainBtn.addEventListener('click', () => {
+                // This sends the user back to the main search page
+                window.location.href = './index.html'; 
+            });
         });
     </script>
 </body>
