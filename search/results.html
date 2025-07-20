@@ -160,7 +160,7 @@
             address: '596 Yonge St, Toronto, ON M4Y 1Z3',
             simulatedSeatsAvailable: 'Many Seats Available',
             simulatedNoiseLevel: 'Moderate',
-            imageUrl: 'https://placehold.co/400x250/E0BBE4/FFFFFF?text=Bloom+Cafe'
+            imageUrl: '../cafes/cafe_detail/Exterior.webp'
         },
         {
             id: 'Good Earth',
@@ -249,7 +249,7 @@
 
                 const viewDetailsButton = cafeCard.querySelector('.view-details-btn');
                 viewDetailsButton.addEventListener('click', () => {
-                    window.location.href = `../cafe-details/index.html?id=${cafe.id}`;
+                    window.location.href = `../cafes/cafe_detail/index.html?id=${cafe.id}`;
                 });
 
                 cafeListContainer.appendChild(cafeCard);
