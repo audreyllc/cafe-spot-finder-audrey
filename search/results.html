@@ -301,7 +301,8 @@
             }
 
             displayCafes(filteredCafes, searchedLocation);
-            const noResultsSearchBtn = document.getElementById('noResultsSearchBtn');
+            
+            const noResultsSearchBtn = document.getElementById('searchAgainBtn');
             noResultsSearchBtn.addEventListener('click', () => {
                 window.location.href = './index.html'; 
             });
