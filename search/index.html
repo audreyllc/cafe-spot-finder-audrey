@@ -1,31 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seat and Sip Toronto</title>
-  <link rel="stylesheet" href="../css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500&family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Café Spot Finder - Find Your Spot</title>
+    
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff:wght@500&family=Lexend:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+            background-color: #f8f5f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        main {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        /* Overwriting default header/footer styles to match new design */
+        header {
+            background-color: #fff;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+        header h1 {
+            font-family: 'DynaPuff', cursive;
+            font-size: 1.8rem;
+            color: #8B4513;
+        }
+        header nav a {
+            margin-left: 1rem;
+            color: #555;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        header nav a:hover {
+            color: #A0522D;
+        }
+        footer {
+            background-color: #f0f0f0;
+            padding: 1rem;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+            margin-top: auto;
+        }
+    </style>
 </head>
-<body>
-  <!-- Header -->
-  <header>
-    <h1>☕ Seat and Sip Toronto</h1>
-    <nav>
-      <a href="/register-user/index.html">📝 Register</a>
-      <a href="/login/index.html">🔐 Login</a>
-      <a href="/search/index.html">🔍 Search</a>
-      <a href="/my-reservations/index.html">📅 My Reservations</a>
-      <a href="/my-favorites/index.html">❤️ My Favorites</a>
-      <a href="/register-owner/index.html">🏪 Owner Register</a>
-    </nav>
-  </header>
+<body class="text-gray-800">
+    <header>
+        <h1>☕ Seat and Sip Toronto</h1>
+        <nav>
+            <a href="../register-user/index.html">📝 Register</a>
+            <a href="../login/index.html">🔐 Login</a>
+            <a href="./index.html">🔍 Search</a> <a href="../my-reservations/index.html">📅 My Reservations</a>
+            <a href="../my-favorites/index.html">❤️ My Favorites</a>
+            <a href="../register-owner/index.html">🏪 Owner Register</a>
+        </nav>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    <p>❤️ Made with love from Toronto</p>
-  </footer>
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white p-8 md:p-12 rounded-xl shadow-lg w-full max-w-xl text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-amber-700 mb-6">Find Your Perfect Café Spot</h2>
+            <p class="text-lg text-gray-600 mb-8">Enter a location to discover cafés with real-time (simulated) availability.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <input type="text" id="locationSearchInput" placeholder="e.g., Yonge St, Dundas St, King St"
+                       class="flex-grow p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 transition duration-300 shadow-sm">
+                <button id="searchButton"
+                        class="bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-700 transition duration-300 shadow-md">
+                    Search Cafés
+                </button>
+            </div>
+        </div>
+    </main>
 
-  <script src="js/main.js"></script>
+    <footer>
+        <p>❤️ Made with love from Toronto</p>
+    </footer>
+
+    <script>
+        const locationInput = document.getElementById('locationSearchInput');
+        const searchBtn = document.getElementById('searchButton');
+
+        function performSearch() {
+            const location = locationInput.value.trim();
+            if (location) {
+                // Redirects to results.html in the same /search/ folder
+                window.location.href = `results.html?location=${encodeURIComponent(location)}`;
+            } else {
+                console.log("Please enter a location to search.");
+                // You could also use: alert("Please enter a location to search.");
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        locationInput.addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                performSearch();
+            }
+        });
+    </script>
 </body>
 </html>
